@@ -1,0 +1,10 @@
+gameWorld:
+  map:
+    - ["forest", "lake", "mountain"]
+    - ["village", "field", "cave"]
+    - ["desert", "ruins", "castle"]
+  weather: "sunny"
+  timeOfDay: "noon"
+  resources:
+    forest: { wood: 100, animals: 50 }
+    lake: { fish: 200, water: 1000 }

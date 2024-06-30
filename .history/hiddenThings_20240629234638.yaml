@@ -1,0 +1,50 @@
+hiddenThings:
+  buried_treasure:
+    name: "Buried Treasure"
+    description: "A chest buried under the leaves."
+    detailed_description: "The chest is wooden with iron bands, partially buried and covered in leaves. It looks like it could contain something valuable if you dig it up."
+
+  sunken_chest:
+    name: "Sunken Chest"
+    description: "A chest sunken at the bottom of the lake."
+    detailed_description: "The chest is barely visible through the clear water, lying on the lake bed. It’s covered in algae and mud, suggesting it’s been there for a long time."
+
+  secret_passage:
+    name: "Secret Passage"
+    description: "A hidden passage leading deeper into the cave."
+    detailed_description: "The passage is narrow and dark, almost invisible unless you know where to look. It seems to lead further into the cave, potentially to unknown dangers or treasures."
+
+  hidden_trapdoor:
+    name: "Hidden Trapdoor"
+    description: "A trapdoor hidden under a rug."
+    detailed_description: "The trapdoor is cleverly concealed under a thick rug. It looks like it hasn’t been used in a long time and might lead to a secret underground room."
+
+  concealed_drawer:
+    name: "Concealed Drawer"
+    description: "A drawer concealed in the wall."
+    detailed_description: "The drawer is seamlessly built into the wall, almost invisible. It requires a keen eye to spot and might contain useful items or clues."
+
+  false_wall:
+    name: "False Wall"
+    description: "A wall that hides a secret room."
+    detailed_description: "The wall looks solid at first glance, but upon closer inspection, you can see faint outlines of a doorway. It seems like a section of the wall can be moved to reveal a hidden room."
+
+  hidden_compartment:
+    name: "Hidden Compartment"
+    description: "A compartment hidden in a piece of furniture."
+    detailed_description: "The compartment is ingeniously hidden in a piece of furniture. It might hold valuable items or important documents."
+
+  hollow_tree:
+    name: "Hollow Tree"
+    description: "A hollow tree that hides something inside."
+    detailed_description: "The tree looks normal from the outside, but it’s hollow inside. You can reach in and find something hidden within the hollow trunk."
+
+  secret_panel:
+    name: "Secret Panel"
+    description: "A panel in the floor or wall that opens to reveal a hidden space."
+    detailed_description: "The panel is cleverly designed to blend in with the surroundings. When opened, it reveals a hidden space that might contain useful items."
+
+  loose_stone:
+    name: "Loose Stone"
+    description: "A stone that can be moved to reveal a hidden compartment."
+    detailed_description: "The stone looks like any other, but it can be moved to reveal a small compartment underneath. It might contain something valuable or a clue."

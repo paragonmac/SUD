@@ -1,0 +1,10 @@
+items:
+  wooden_stick:
+    name: "Wooden Stick"
+    description: "A sturdy wooden stick."
+    detailed_description: "The stick is about a meter long, smooth from wear, and looks like it could be used as a makeshift weapon or walking aid."
+  old_coin:
+    name: "Old Coin"
+    description: "An ancient coin with mysterious markings."
+    detailed_description: "The coin is made of tarnished silver and is covered in strange symbols that are hard to decipher. It looks very old and valuable."
+  # Add more items as needed
