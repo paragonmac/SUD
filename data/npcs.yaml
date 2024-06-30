@@ -1,0 +1,13 @@
+npcs:
+  wise_old_man:
+    name: "Wise Old Man"
+    description: "An old man with a long beard and a staff."
+    detailed_description: "The old man has a kindly face, deeply lined with age and wisdom. His eyes sparkle with knowledge, and he leans heavily on a gnarled wooden staff. He seems eager to share his stories."
+  fisherman:
+    name: "Fisherman"
+    description: "A fisherman casting his line into the water."
+    detailed_description: "The fisherman is a weathered man with sunburned skin and calloused hands. His clothes are simple and patched, and he hums a tuneless song as he patiently waits for a bite."
+  explorer:
+    name: "Explorer"
+    description: "An explorer mapping out the cave."
+    detailed_description: "The explorer is dressed in rugged gear, with a backpack full of tools and maps. His face is set with determination, and his eyes constantly scan the surroundings for anything of interest."

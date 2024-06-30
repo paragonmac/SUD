@@ -1,0 +1,13 @@
+creatures:
+  deer:
+    name: "Deer"
+    description: "A gentle deer grazing on the grass."
+    detailed_description: "The deer has a sleek, tawny coat and moves gracefully as it nibbles on the grass. Its ears twitch at the slightest sound, and its eyes are wide and alert."
+  duck:
+    name: "Duck"
+    description: "A duck swimming peacefully on the lake."
+    detailed_description: "The duck has bright plumage and glides effortlessly across the water. Occasionally, it dips its head underwater to forage for food."
+  bat:
+    name: "Bat"
+    description: "A bat hanging from the ceiling."
+    detailed_description: "The bat is small and dark, clinging upside down to the cave ceiling. Its wings are folded around its body, and it occasionally twitches as it sleeps."

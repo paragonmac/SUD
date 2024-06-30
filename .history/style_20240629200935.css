@@ -1,0 +1,230 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#world-window {
+    width: 80%;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+body {
+    font-family: Arial, sans-serif;
+    background-color: #f0f0f0;
+    margin: 0;
+    padding: 0;
+}
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#world-window {
+    width: 80%;
+    height: 400px;
+    background-color: #fff;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+#command-window {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+}
+#command-input {
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #b8b8b8;
+    margin: 0;
+    padding: 0;
+}
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#world-window {
+    width: 80%;
+    height: 400px;
+    background-color: #272727;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+#command-window {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+}
+#command-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+#send-command {
+    padding: 10px;
+    font-size: 16px;
+}
+#inventory-button {
+    padding: 10px;
+    font-size: 16px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+#inventory-window {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+    padding: 10px;
+    font-size: 16px;
+}
+#send-command {
+    padding: 10px;
+    font-size: 16px;
+}
+#inventory-button {
+    padding: 10px;
+    font-size: 16px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+#inventory-window {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+    padding: 10px;
+}
+#command-window {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+}
+#command-input {
+    flex: 1;
+    padding: 10px;
+ body {
+    font-family: Arial, sans-serif;
+    background-color: #272727;
+    margin: 0;
+    padding: 0;
+}
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+}
+#world-window {
+    width: 80%;
+    height: 400px;
+    background-color: #272727;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding: 10px;
+}
+#command-window {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+}
+#command-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+#send-command {
+    padding: 10px;
+    font-size: 16px;
+}
+#inventory-button {
+    padding: 10px;
+    font-size: 16px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0, 0, 0, 0);
+    padding-top: 60px;
+}
+#inventory-window {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
+
+}
+#send-command {
+    padding: 10px;
+    font-size: 16px;
+}
+#inventory-button {
+    padding: 10px;
+    font-size: 16px;
+}
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 1;
+    left: 0;
+    top: 0;
+    width: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.4);
+    padding-top: 60px;
+}
+#inventory-window {
+    background-color: #fefefe;
+    margin: 5% auto;
+    padding: 20px;
+    border: 1px solid #888;
+    width: 80%;
+}
