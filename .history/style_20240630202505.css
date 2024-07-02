@@ -1,0 +1,67 @@
+body {
+    font-family: Arial, sans-serif;
+    background-color: #3a3a3a;
+    margin: 0;
+    padding: 0;
+}
+
+#game-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 10px;
+}
+
+#room-window {
+    width: 95%;
+    color: #ffffff;
+    background-color: #131313;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    padding: 10px;
+    box-sizing: border-box;
+    text-align: ;
+    overflow-y: auto; /* Add scroll if content overflows */
+    resize: both;
+}
+
+#world-window {
+    width: 95%;
+    height: 400px;
+    color: #ffffff;
+    background-color: #131313;
+    border: 1px solid #ccc;
+    margin-bottom: 10px;
+    overflow-y: auto;
+    padding: 10px;
+    box-sizing: border-box;
+    resize: both;
+}
+
+#command-window {
+    display: flex;
+    width: 80%;
+    margin-bottom: 10px;
+}
+
+#command-input {
+    flex: 1;
+    padding: 10px;
+    font-size: 16px;
+}
+
+#send-command {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#inventory-button {
+    padding: 10px;
+    font-size: 16px;
+}
+
+#close-game-button {
+    padding: 10px;
+    font-size: 16px;
+    margin-top: 10px;
+}

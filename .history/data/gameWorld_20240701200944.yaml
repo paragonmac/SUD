@@ -1,0 +1,83 @@
+gameWorld:
+  rooms:
+    - id: 0
+      name: "Forest clearing"
+      description: "You are in a forest clearing. The sunlight filters through the trees."
+      detailed_description: "The clearing is calm and peaceful, with birds chirping and a soft breeze rustling the leaves. The trees around you seem ancient, their bark thick and covered in moss."
+      items:
+        - wooden_stick
+        - old_coin
+      livingThings:
+        - wise_old_man
+        - deer
+      hiddenThings:
+        - buried_treasure
+      monsters:
+        - goblin
+      exits:
+        - north:
+          direction: "N"
+          description: "A narrow path leading north through the trees."
+          gotoRoom: 1
+      events:
+        - message: "A gentle breeze passes through the area."
+        - message: "You hear distant, eerie sounds."
+        - message: "Leaves rustle as a small animal scurries by."
+        - message: "You notice movement in the shadows."
+        - message: "A bird sings a melancholic tune nearby."
+
+    - id: 1
+      name: "Lake"
+      description: "You find yourself at the edge of a serene lake. The water is crystal clear."
+      detailed_description: "The lake's surface is like glass, reflecting the sky and surrounding trees. You can see fish swimming near the shore and a few water lilies floating on the surface."
+      items:
+        - fishing_rod
+        - silver_ring
+      livingThings:
+        - fisherman
+        - duck
+      hiddenThings:
+        - sunken_chest
+      monsters:
+        - goblin_chieftain
+      exits:
+        - south:
+            direction: "S"
+            description: "A narrow path leading south through the water to a forest clearing."
+            gotoRoom: 0
+        - west:
+          direction: "W"
+          description: "A rocky outcrop which leads a large cave to the west."
+          gotoRoom: 2
+      events:
+        - message: "You hear the gentle lapping of water against the shore."
+        - message: "A fish jumps out of the water and splashes back in."
+        - message: "A gentle breeze creates ripples on the lake's surface."
+        - message: "A duck quacks nearby."
+        - message: "The sun reflects brightly off the water."
+
+    - id: 2
+      name: "Cave"
+      description: "You enter a dark cave. The air is damp and the ground is uneven."
+      detailed_description: "The cave walls are rough and cold to the touch, covered in patches of moss and lichen. Stalactites hang from the ceiling, and you can hear the distant dripping of water echoing through the cavern."
+      items:
+        - torch
+        - rope
+      livingThings:
+        - explorer
+        - bat
+      hiddenThings:
+        - secret_passage
+      monsters:
+        - goblin_archer
+      exits:
+          east:
+            direction: "E"
+            description: "You see an exit out of the cave that leads toward a large lake."
+            gotoRoom: 1
+      events:
+        - message: "You hear the distant dripping of water."
+        - message: "A bat flutters overhead."
+        - message: "The air feels colder here."
+        - message: "Your footsteps echo off the cave walls."
+        - message: "You hear a distant growl from deep within the cave."
