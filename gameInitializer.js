@@ -40,5 +40,4 @@ export function initializeGame(data) {
 
     // Log the game world for debugging purposes
     console.log('Game world initialized:', gameWorld);
-
 }

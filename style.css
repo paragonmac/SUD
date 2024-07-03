@@ -20,7 +20,7 @@ body {
     margin-bottom: 2px;
     padding: 2px;
     box-sizing: border-box;
-    text-align:initial;
+    text-align: initial;
     overflow-y: auto; /* Add scroll if content overflows */
     resize: both;
 }

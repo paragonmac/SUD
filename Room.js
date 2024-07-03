@@ -1,5 +1,3 @@
-import gameWorld from './data/gameWorld.yaml'; // Load the game world data
-
 export class Room {
     constructor(id) {
         this.id = id;
@@ -15,13 +13,13 @@ export class Room {
         this.initialized = false;
     }
 
-    initialize() {
+    initialize(gameWorld) {
         const roomData = gameWorld.rooms.find(room => room.id === this.id);
         if (roomData) {
             this.name = roomData.name;
             this.description = roomData.description;
             this.detailed_description = roomData.detailed_description || '';
-            this.exits = roomData.exits;
+            this.exits = roomData.exits || {};
             this.items = roomData.items || [];
             this.monsters = roomData.monsters || [];
             this.livingThings = roomData.livingThings || [];
@@ -34,12 +32,14 @@ export class Room {
         }
     }
 
-    enter() {
+    enter(gameWorld) {
         if (!this.initialized) {
-            this.initialize();
+            this.initialize(gameWorld);
         }
         console.log(`Entered room: ${this.name}`);
     }
 
-    // Add more methods as needed, like interacting with items or monsters
+    getExit(direction) {
+        return this.exits[direction];
+    }
 }

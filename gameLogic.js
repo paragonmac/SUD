@@ -8,17 +8,17 @@ export { player };
 const rooms = {};
 export { rooms };
 
-function spawnRoom(roomId) {
+function spawnRoom(roomId, gameWorld) {
     if (!rooms[roomId]) {
         rooms[roomId] = new Room(roomId);
-        rooms[roomId].initalize(gameWorld);
+        rooms[roomId].initialize(gameWorld);
     }
-    rooms[roomId].enter();
-    player.currentRoom = roomId;
+    rooms[roomId].enter(gameWorld);
+    player.currentRoom = rooms[roomId];
     displayCurrentRoom(player);
 }
 
-export function startGame() {
+export function startGame(gameWorld) {
     const commandInput = document.getElementById('command-input');
     const sendCommandButton = document.getElementById('send-command');
     const inventoryButton = document.getElementById('inventory-button');
@@ -49,9 +49,8 @@ export function startGame() {
     closeGameButton.addEventListener('click', closeGame);
 
     // Display initial room description
-    rooms = [];
     player = new Player("Billy");
-    displayCurrentRoom(player);
+    spawnRoom(1, gameWorld); // Initialize starting room
 
     console.log('Game started');
 }
@@ -92,4 +91,3 @@ export function closeGame() {
 
     console.log('Game closing');
 }
-
