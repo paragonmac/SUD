@@ -1,9 +1,23 @@
 import { displayCurrentRoom, logToWorld, logToRoom, updateRoomWindow } from './drawWindows.js';
 import { handleCommand } from './commandMap.js';
 import { Player } from './Player.js';
+import { Room } from './Room.js';
+
 let player;
 export { player };
-// Function to start the game
+const rooms = {};
+export { rooms };
+
+function spawnRoom(roomId) {
+    if (!rooms[roomId]) {
+        rooms[roomId] = new Room(roomId);
+        rooms[roomId].initalize(gameWorld);
+    }
+    rooms[roomId].enter();
+    player.currentRoom = roomId;
+    displayCurrentRoom(player);
+}
+
 export function startGame() {
     const commandInput = document.getElementById('command-input');
     const sendCommandButton = document.getElementById('send-command');
@@ -35,6 +49,7 @@ export function startGame() {
     closeGameButton.addEventListener('click', closeGame);
 
     // Display initial room description
+    rooms = [];
     player = new Player("Billy");
     displayCurrentRoom(player);
 

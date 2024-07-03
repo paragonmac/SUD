@@ -1,4 +1,4 @@
-import gameWorld from './gameWorld.yaml'; // Load the game world data
+import gameWorld from './data/gameWorld.yaml'; // Load the game world data
 
 export class Room {
     constructor(id) {
