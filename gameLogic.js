@@ -1,8 +1,7 @@
 import { displayCurrentRoom, logToWorld, logToRoom, updateRoomWindow } from './drawWindows.js';
 import { handleCommand } from './commandMap.js';
 import { Player } from './Player.js';
-
-var player = new Player('Billy');
+let player;
 export { player };
 // Function to start the game
 export function startGame() {
@@ -36,6 +35,7 @@ export function startGame() {
     closeGameButton.addEventListener('click', closeGame);
 
     // Display initial room description
+    player = new Player("Billy");
     displayCurrentRoom(player);
 
     console.log('Game started');
@@ -53,7 +53,7 @@ export function startRandomEventLoop() {
 
 // Function to trigger a random event in the current room
 function triggerRandomEvent() {
-    const currentRoom = window.gameWorld.rooms[player.currentRoom]; // Assuming the player starts in the first room
+    const currentRoom = player.currentRoom; // Assuming the player starts in the first room
     if (currentRoom.events && currentRoom.events.length > 0) {
         const randomIndex = Math.floor(Math.random() * currentRoom.events.length);
         const randomEvent = currentRoom.events[randomIndex];

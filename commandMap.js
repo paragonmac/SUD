@@ -1,6 +1,6 @@
 import { logToWorld } from './drawWindows.js';
 import * as commands from './commands.js';
-import * as player from './gameLogic.js';
+import { player } from './gameLogic.js';
 
 export function handleCommand(input) {
     const matchedCommands = Object.keys(commandMap).filter(command =>
@@ -25,6 +25,6 @@ export const commandMap = {
     'open inventory': commands.openInventory,
     'look': commands.displayCurrentRoom,
     'help': commands.help,
-    'playerDebug': () => player.diplayStatus(),
+    'playerDebug': () => player.displayStatus(),
     // Add more commands and their handlers here
 };

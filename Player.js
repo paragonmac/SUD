@@ -2,7 +2,7 @@ export class Player {
     constructor(name) {
         this.canMove = true;
         this.name = name;
-        this.currentRoom = 0;
+        this.currentRoom = window.gameWorld.rooms[0];
         this.inventory = [];
         this.health = 100; // or any default value you prefer
         this.level = 1; // or any default value you prefer
@@ -11,8 +11,7 @@ export class Player {
 
     move(roomid) {
         // Add logic to move the player to a new room based on direction
-        this.currentRoom = roomid;
-        console.log(`${this.name} moves ${direction}`);
+        this.currentRoom = window.gameWorld.rooms[roomid];
     }
 
     addItem(item) {

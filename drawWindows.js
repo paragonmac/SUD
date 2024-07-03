@@ -1,4 +1,3 @@
-
 export function logToWorld(message) {
     const worldWindow = document.getElementById('world-window');
     const messageElement = document.createElement('div');
@@ -21,41 +20,53 @@ export function updateRoomWindow(room) {
   roomWindow.innerHTML = `
     <h3>${room.name}</h3>
         <p>${room.detailed_description || ''}
-            <strong>Items nearby:</strong> 
+            <strong>Items nearby:
+            </strong> 
                 <span style="color: yellow;">${room.items.map(item => item.name).join(', ')}
                 </span>
         </p>
-    <p><strong style>Monsters:</strong> <span style="color: red;"> ${room.monsters.map(monster => monster.name).join(', ')}</span></p>
-    <p><strong>Exits:</strong> ${Object.keys(room.exits).map(key => room.exits[key].direction).join(', ')}</p>
+    <p>
+        <strong style>Monsters:
+        </strong> 
+            <span style="color: red;"> ${room.monsters.map(monster => monster.name).join(', ')}
+            </span>
+    </p>
+    <p>
+        <strong>Exits:
+        </strong> ${Object.keys(room.exits).map(key => room.exits[key].direction).join(', ')}
+    </p>
   `;
   console.log('Updated room window:', room);
 }
 
-
 // Function to display the current room
 export function displayCurrentRoom(player) {
-    const currentRoom = window.gameWorld.rooms[player.currentRoom]; 
-    updateRoomWindow(currentRoom);
+    const currentRoom = player.currentRoom; 
+    updateRoomWindow(currentRoom);// why is there here?
     logToWorld(currentRoom.description);
     if (currentRoom.detailed_description) {
         logToWorld(currentRoom.detailed_description);
     }
     if (currentRoom.exits) {
+        let exitString = '';
         if (currentRoom.exits.north) {
-            logToWorld(`- ${currentRoom.exits.north}: ${currentRoom.exits.north.description}`);
+            exitString += 'North ';
         }
         if (currentRoom.exits.south) {
-            logToWorld(`- ${currentRoom.exits.south}: ${currentRoom.exits.south.description}`);
+            exitString += 'South ';
         }
         if (currentRoom.exits.east) {
-            logToWorld(`- ${currentRoom.exits.east}: ${currentRoom.exits.east.description}`);
+            exitString += 'East ';
         }
         if (currentRoom.exits.west) {
-            logToWorld(`- ${currentRoom.exits.west}: ${currentRoom.exits.west.description}`);
+            exitString += 'West ';
         }
+        logToWorld('Exits: ' + exitString);
+
     } else {
         logToWorld('Exits: None');
     };
+
     if (currentRoom.items.length > 0) {
         logToWorld('Items in the room:');
         currentRoom.items.forEach(item => {

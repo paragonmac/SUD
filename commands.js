@@ -1,14 +1,17 @@
 import { logToWorld } from './drawWindows.js';
 import { player } from './gameLogic.js';
+import { updateRoomWindow } from './drawWindows.js';
 //import gameWorld from './gameWorld.yaml'; // Load the game world data
 
 // Command handler functions
 export function move(direction) {
-    const currentRoom = window.gameWorld.rooms[player.currentRoom]; 
-    const exit = currentRoom.exits.gotoRoom;
+    const currentRoom = player.currentRoom; 
+    const nsew = currentRoom.exits[direction];
+    const exit = nsew.gotoRoom; //this needs a global variable to feed the gotoroom... we already have that data at this point
     if(exit) { // Check if the player can move in the specified direction
-        player.move(exit.gotoRoom);
+        player.move(exit);
         logToWorld(`You move ${direction}.`);
+        updateRoomWindow(player.currentRoom);
         displayCurrentRoom(player);
     }
     else {
@@ -23,7 +26,7 @@ export function openInventory() {
 }
 
 export function displayCurrentRoom() {
-    const currentRoom = window.gameWorld.rooms[player.currentRoom]; 
+    const currentRoom = player.currentRoom; 
     logToWorld(currentRoom.detailed_description);
 }
 
