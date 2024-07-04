@@ -1,43 +1,34 @@
+import { assert } from './utils.js';
+
 export function initializeGame(data) {
     const { gameWorld, items, npcs, creatures, monsters, hiddenThings } = data;
 
-    // Verify that data has been loaded correctly
-    if (!items || !npcs || !creatures || !monsters || !hiddenThings) {
-        console.error("Error: Missing data. Check your YAML files.");
-        return;
-    }
+    assert(gameWorld, 'Game world data is missing');
+    assert(items, 'Items data is missing');
+    assert(npcs, 'NPCs data is missing');
+    assert(creatures, 'Creatures data is missing');
+    assert(monsters, 'Monsters data is missing');
+    assert(hiddenThings, 'Hidden things data is missing');
 
-    // Map item, NPC, creature, monster, and hidden thing references to their full data
     gameWorld.rooms.forEach(room => {
         room.items = room.items.map(itemKey => {
-            if (!items[itemKey]) {
-                console.error(`Item key not found: ${itemKey}`);
-            }
+            assert(items[itemKey], `Item key not found: ${itemKey}`);
             return items[itemKey];
         });
         room.livingThings = room.livingThings.map(livingThingKey => {
-            if (!npcs[livingThingKey] && !creatures[livingThingKey]) {
-                console.error(`Living thing key not found: ${livingThingKey}`);
-            }
+            assert(npcs[livingThingKey] || creatures[livingThingKey], `Living thing key not found: ${livingThingKey}`);
             return npcs[livingThingKey] || creatures[livingThingKey];
         });
         room.hiddenThings = room.hiddenThings.map(hiddenThingKey => {
-            if (!hiddenThings[hiddenThingKey]) {
-                console.error(`Hidden thing key not found: ${hiddenThingKey}`);
-            }
+            assert(hiddenThings[hiddenThingKey], `Hidden thing key not found: ${hiddenThingKey}`);
             return hiddenThings[hiddenThingKey];
         });
         room.monsters = room.monsters.map(monsterKey => {
-            if (!monsters[monsterKey]) {
-                console.error(`Monster key not found: ${monsterKey}`);
-            }
+            assert(monsters[monsterKey], `Monster key not found: ${monsterKey}`);
             return monsters[monsterKey];
         });
     });
 
-    // Store the game world in a global variable for easy access
     window.gameWorld = gameWorld;
-
-    // Log the game world for debugging purposes
     console.log('Game world initialized:', gameWorld);
 }

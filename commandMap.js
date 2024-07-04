@@ -1,6 +1,5 @@
 import { logToWorld } from './drawWindows.js';
 import * as commands from './commands.js';
-import { player } from './gameLogic.js';
 
 export function handleCommand(input) {
     const matchedCommands = Object.keys(commandMap).filter(command =>
@@ -12,19 +11,17 @@ export function handleCommand(input) {
     } else if (matchedCommands.length > 1) {
         logToWorld(`Ambiguous command. Did you mean: ${matchedCommands.join(', ')}`);
     } else {
-        logToWorld(`Unknown command:  ${input}.`);
+        logToWorld(`Unknown command: ${input}.`);
     }
 }
-
 
 export const commandMap = {
     'move north': () => commands.move('north'), 
     'move south': () => commands.move('south'),
-    'move east': () => move('east'),
-    'move west': () => move('west'),
+    'move east': () => commands.move('east'),
+    'move west': () => commands.move('west'),
     'open inventory': commands.openInventory,
     'look': commands.displayCurrentRoom,
     'help': commands.help,
-    'playerDebug': () => player.displayStatus(),
-    // Add more commands and their handlers here
+    'playerDebug': commands.playerDebug,
 };

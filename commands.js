@@ -1,23 +1,20 @@
+import { assert } from './utils.js';
 import { logToWorld } from './drawWindows.js';
-import { player } from './gameLogic.js';
-import { updateRoomWindow } from './drawWindows.js';
-//import gameWorld from './gameWorld.yaml'; // Load the game world data
+import { player, rooms } from './gameLogic.js';
+import { updateRoomWindow, displayCurrentRoom } from './drawWindows.js';
 
-// Command handler functions
 export function move(direction) {
-    const currentRoom = player.currentRoom; 
-    const nsew = currentRoom.exits[direction];
-    const exit = nsew.gotoRoom; //this needs a global variable to feed the gotoroom... we already have that data at this point
-    if(exit) { // Check if the player can move in the specified direction
-        player.move(exit);
+    const currentRoom = player.currentRoom;
+    assert(currentRoom, 'Player is not in any room');
+    const exit = currentRoom.exits[direction];
+    if (exit) {
+        player.move(direction, rooms, window.gameWorld);
         logToWorld(`You move ${direction}.`);
         updateRoomWindow(player.currentRoom);
         displayCurrentRoom(player);
-    }
-    else {
+    } else {
         logToWorld(`You can't go ${direction}.`);
     }
-    // Add logic to update the player's position and room state
 }
 
 export function openInventory() {
@@ -25,8 +22,9 @@ export function openInventory() {
     window.open('/components/inventory.html', 'Inventory', 'width=600,height=400');
 }
 
-export function displayCurrentRoom() {
-    const currentRoom = player.currentRoom; 
+export function fetchCurrentRoom() {
+    const currentRoom = player.currentRoom;
+    assert(currentRoom, 'Player is not in any room');
     logToWorld(currentRoom.detailed_description);
 }
 
@@ -34,4 +32,6 @@ export function help() {
     logToWorld('Available commands: move <direction>, open inventory, help');
 }
 
-// Add more command handler functions as needed
+export function playerDebug() {
+    player.displayStatus();
+}

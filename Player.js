@@ -1,22 +1,32 @@
+import { assert } from './utils.js';
+import { Room } from './Room.js';
 export class Player {
-    constructor(name) {
-        this.canMove = true;
+    constructor(name, startingRoom) {
         this.name = name;
-        this.currentRoom = null; // Initialize currentRoom as null
+        this.currentRoom = startingRoom;
         this.inventory = [];
-        this.health = 100; // or any default value you prefer
-        this.level = 1; // or any default value you prefer
+        this.health = 100;
+        this.level = 1;
+        this.handr = null;
+        this.handl = null;
+        this.backContainer = null;
     }
 
-    move(roomId, rooms, gameWorld) {
+    move(direction, rooms, gameWorld) {
         const currentRoom = rooms[this.currentRoom.id];
-        const nextRoomId = currentRoom.getExit(roomId);
-        if (nextRoomId && rooms[nextRoomId]) {
+        assert(currentRoom, `Current room: ${this.currentRoom} not found ${rooms}`);
+        const nextRoomId = currentRoom.getExit(direction);
+        assert(typeof nextRoomId === 'number', `Invalid roomID ${nextRoomId}`);
+        if (nextRoomId) {
+            if (!rooms[nextRoomId]) {
+                rooms[nextRoomId] = new Room(nextRoomId);
+                rooms[nextRoomId].initialize(gameWorld);
+            }
             this.currentRoom = rooms[nextRoomId];
             this.currentRoom.enter(gameWorld);
-            console.log(`${this.name} moves to ${nextRoomId}`);
+            console.log(`${this.name} moves ${direction} to ${nextRoomId}`);
         } else {
-            console.log(`You can't move to ${roomId} from here.`);
+            console.log(`You can't move ${direction} from here.`);
         }
     }
 
@@ -34,7 +44,7 @@ export class Player {
         console.log(`Player: ${this.name}`);
         console.log(`Health: ${this.health}`);
         console.log(`Level: ${this.level}`);
-        console.log(`Current Room: ${this.currentRoom}`);
+        console.log(`Current Room: ${this.currentRoom.id}`);
         console.log(`Inventory: ${this.inventory.map(item => item.name).join(', ')}`);
     }
 }

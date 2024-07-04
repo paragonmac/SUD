@@ -1,3 +1,5 @@
+import { assert } from './utils.js';
+
 export class Room {
     constructor(id) {
         this.id = id;
@@ -13,33 +15,31 @@ export class Room {
         this.initialized = false;
     }
 
-    initialize(gameWorld) {
+    initialize() {
         const roomData = gameWorld.rooms.find(room => room.id === this.id);
-        if (roomData) {
-            this.name = roomData.name;
-            this.description = roomData.description;
-            this.detailed_description = roomData.detailed_description || '';
-            this.exits = roomData.exits || {};
-            this.items = roomData.items || [];
-            this.monsters = roomData.monsters || [];
-            this.livingThings = roomData.livingThings || [];
-            this.hiddenThings = roomData.hiddenThings || [];
-            this.events = roomData.events || [];
-            this.initialized = true;
-            console.log(`Room ${this.id} initialized`);
-        } else {
-            console.error(`Room ${this.id} not found in game world`);
-        }
+        assert(roomData, `Room data for room with id ${this.id} not found roomData: ${roomData}`);
+        this.name = roomData.name;
+        this.description = roomData.description;
+        this.detailed_description = roomData.detailed_description || '';
+        this.exits = roomData.exits || {};
+        this.items = roomData.items || [];
+        this.monsters = roomData.monsters || [];
+        this.livingThings = roomData.livingThings || [];
+        this.hiddenThings = roomData.hiddenThings || [];
+        this.events = roomData.events || [];
+        this.initialized = true;
+        console.log(`Room ${this.id} initialized`);
     }
 
-    enter(gameWorld) {
+    enter() {
         if (!this.initialized) {
-            this.initialize(gameWorld);
+            this.initialize();
         }
         console.log(`Entered room: ${this.name}`);
     }
 
     getExit(direction) {
-        return this.exits[direction];
+        const exit = this.exits[direction];
+        return exit ? exit.gotoRoom: null;
     }
 }

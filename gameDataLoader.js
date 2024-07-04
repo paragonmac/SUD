@@ -1,4 +1,4 @@
-// Function to load a YAML file
+
 export async function loadYAML(url) {
     try {
         const response = await fetch(url);
@@ -10,7 +10,6 @@ export async function loadYAML(url) {
     }
 }
 
-// Function to load all game data from YAML files
 export async function loadGameData() {
     try {
         const gameWorld = await loadYAML('/data/gameWorld.yaml');

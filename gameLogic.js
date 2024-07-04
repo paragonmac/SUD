@@ -1,3 +1,4 @@
+import { assert } from './utils.js';
 import { displayCurrentRoom, logToWorld, logToRoom, updateRoomWindow } from './drawWindows.js';
 import { handleCommand } from './commandMap.js';
 import { Player } from './Player.js';
@@ -24,6 +25,11 @@ export function startGame(gameWorld) {
     const inventoryButton = document.getElementById('inventory-button');
     const closeGameButton = document.getElementById('close-game-button');
     
+    assert(commandInput, 'Command input element not found');
+    assert(sendCommandButton, 'Send command button not found');
+    assert(inventoryButton, 'Inventory button not found');
+    assert(closeGameButton, 'Close game button not found');
+
     sendCommandButton.addEventListener('click', () => {
         const command = commandInput.value;
         commandInput.value = '';
@@ -41,7 +47,6 @@ export function startGame(gameWorld) {
     });
 
     inventoryButton.addEventListener('click', () => {
-        // Open inventory.html in a new window
         window.open('/components/inventory.html', 'Inventory', 'width=600,height=400');
         console.log('Opened inventory window');
     });
@@ -49,25 +54,24 @@ export function startGame(gameWorld) {
     closeGameButton.addEventListener('click', closeGame);
 
     // Display initial room description
-    player = new Player("Billy");
-    spawnRoom(1, gameWorld); // Initialize starting room
+    player = new Player("Billy", 'startingRoom');
+    spawnRoom( 1, gameWorld);
 
     console.log('Game started');
 }
 
-// Function to start the random event loop
 export function startRandomEventLoop() {
     setInterval(() => {
-        if (Math.random() < 0.01) { // 1% chance of triggering a random event
+        if (Math.random() < 0.01) {
             triggerRandomEvent();
         }
-    }, 1000); // Trigger a random event every second
+    }, 1000);
     console.log('Random event loop started');
 }
 
-// Function to trigger a random event in the current room
 function triggerRandomEvent() {
-    const currentRoom = player.currentRoom; // Assuming the player starts in the first room
+    const currentRoom = player.currentRoom;
+    assert(currentRoom, 'Player is not in any room');
     if (currentRoom.events && currentRoom.events.length > 0) {
         const randomIndex = Math.floor(Math.random() * currentRoom.events.length);
         const randomEvent = currentRoom.events[randomIndex];
@@ -76,18 +80,10 @@ function triggerRandomEvent() {
     }
 }
 
-// Function to gracefully close the game
 export function closeGame() {
-    // Notify players
     logToWorld("The game is closing.");
-
-    // Cleanup resources
-    // (e.g., close connections, stop sounds, free memory)
-
-    // Close the window or redirect
     setTimeout(() => {
         window.close();
-    }, 3000);  // Give players time to read the message
-
+    }, 3000);
     console.log('Game closing');
 }
