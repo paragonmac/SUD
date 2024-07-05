@@ -8,17 +8,29 @@
     <link rel="icon" href="favicon.ico" type="image/x-icon">
 </head>
 <body>
-    <div id="game-container">
-        <div id="room-window"></div> <!-- New room window -->
-        <div id="world-window"></div>
+<div id="game-container">
+    <div id="room-window"></div> <!-- New room window -->
+    <div id="world-window"></div>
+    <div id="controls">
         <div id="command-window">
-            <input type="text" id="command-input" placeholder="Enter command...">
+            <span id="command-input-container"><input type="text" id="command-input" placeholder="Enter command...">
             <button id="send-command">Send</button>
-            <button id="inventory-button">Inventory</button>
-            <button id="close-game-button">Close Game</button>
+            </span>
+        </div>
+        <div class="compass">
+            <div class="direction" id="northwest"></div>
+            <div class="direction" id="north"></div>
+            <div class="direction" id="northeast"></div>
+            <div class="direction" id="west"></div>
+            <div class="direction" id="center"></div>
+            <div class="direction" id="east"></div>
+            <div class="direction" id="southwest"></div>
+            <div class="direction" id="south"></div>
+            <div class="direction" id="southeast"></div>
         </div>
     </div>
-    <!-- Include js-yaml library from a CDN -->
+</div>
+
     <script src="https://cdn.jsdelivr.net/npm/js-yaml@4/dist/js-yaml.min.js"></script>
     <script type="module" src="main.js"></script>
 </body>

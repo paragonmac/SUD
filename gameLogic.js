@@ -3,11 +3,14 @@ import { displayCurrentRoom, logToWorld, logToRoom, updateRoomWindow } from './d
 import { handleCommand } from './commandMap.js';
 import { Player } from './Player.js';
 import { Room } from './Room.js';
+import { updateCompass } from './imageHandler.js';
+import * as commands from './commands.js';
 
 let player;
 export { player };
 const rooms = {};
 export { rooms };
+
 
 function spawnRoom(roomId, gameWorld) {
     if (!rooms[roomId]) {
@@ -16,7 +19,7 @@ function spawnRoom(roomId, gameWorld) {
     }
     rooms[roomId].enter(gameWorld);
     player.currentRoom = rooms[roomId];
-    displayCurrentRoom(player);
+    displayCurrentRoom(player, gameWorld);
 }
 
 export function startGame(gameWorld) {
@@ -27,8 +30,6 @@ export function startGame(gameWorld) {
     
     assert(commandInput, 'Command input element not found');
     assert(sendCommandButton, 'Send command button not found');
-    assert(inventoryButton, 'Inventory button not found');
-    assert(closeGameButton, 'Close game button not found');
 
     sendCommandButton.addEventListener('click', () => {
         const command = commandInput.value;
@@ -46,23 +47,17 @@ export function startGame(gameWorld) {
         }
     });
 
-    inventoryButton.addEventListener('click', () => {
-        window.open('/components/inventory.html', 'Inventory', 'width=600,height=400');
-        console.log('Opened inventory window');
-    });
-
-    closeGameButton.addEventListener('click', closeGame);
-
     // Display initial room description
     player = new Player("Billy", 'startingRoom');
     spawnRoom( 1, gameWorld);
+    updateCompass(player.currentRoom);
 
     console.log('Game started');
 }
 
 export function startRandomEventLoop() {
     setInterval(() => {
-        if (Math.random() < 0.01) {
+        if (Math.random() < 0.003) {
             triggerRandomEvent();
         }
     }, 1000);

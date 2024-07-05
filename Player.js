@@ -1,5 +1,6 @@
 import { assert } from './utils.js';
 import { Room } from './Room.js';
+import { updateCompass } from './imageHandler.js';
 export class Player {
     constructor(name, startingRoom) {
         this.name = name;
@@ -24,6 +25,7 @@ export class Player {
             }
             this.currentRoom = rooms[nextRoomId];
             this.currentRoom.enter(gameWorld);
+            updateCompass(this.currentRoom);
             console.log(`${this.name} moves ${direction} to ${nextRoomId}`);
         } else {
             console.log(`You can't move ${direction} from here.`);

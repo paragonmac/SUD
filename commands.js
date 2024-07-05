@@ -2,6 +2,7 @@ import { assert } from './utils.js';
 import { logToWorld } from './drawWindows.js';
 import { player, rooms } from './gameLogic.js';
 import { updateRoomWindow, displayCurrentRoom } from './drawWindows.js';
+import { updateCompass} from './imageHandler.js';
 
 export function move(direction) {
     const currentRoom = player.currentRoom;
@@ -12,6 +13,8 @@ export function move(direction) {
         logToWorld(`You move ${direction}.`);
         updateRoomWindow(player.currentRoom);
         displayCurrentRoom(player);
+        updateCompass(player.currentRoom);
+        
     } else {
         logToWorld(`You can't go ${direction}.`);
     }
