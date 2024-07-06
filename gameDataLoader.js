@@ -7,6 +7,7 @@ export async function loadYAML(url) {
         return jsyaml.load(text);
     } catch (error) {
         console.error(`Error loading YAML from ${url}:`, error);
+        throw error;
     }
 }
 

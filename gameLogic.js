@@ -4,7 +4,7 @@ import { handleCommand } from './commandMap.js';
 import { Player } from './Player.js';
 import { Room } from './Room.js';
 import { updateCompass } from './imageHandler.js';
-import * as commands from './commands.js';
+import * as eventManager from './eventManager.js';
 
 let player;
 export { player };
@@ -25,9 +25,11 @@ function spawnRoom(roomId, gameWorld) {
 export function startGame(gameWorld) {
     const commandInput = document.getElementById('command-input');
     const sendCommandButton = document.getElementById('send-command');
-    const inventoryButton = document.getElementById('inventory-button');
-    const closeGameButton = document.getElementById('close-game-button');
-    
+    const roundTimeBar = document.getElementById('roundTimeProgress');
+    const roundTimeText = document.getElementById('roundTimeText');
+    const leftHand = document.getElementById('leftHand');
+    const rightHand = document.getElementById('rightHand');
+
     assert(commandInput, 'Command input element not found');
     assert(sendCommandButton, 'Send command button not found');
 
@@ -54,27 +56,6 @@ export function startGame(gameWorld) {
 
     console.log('Game started');
 }
-
-export function startRandomEventLoop() {
-    setInterval(() => {
-        if (Math.random() < 0.003) {
-            triggerRandomEvent();
-        }
-    }, 1000);
-    console.log('Random event loop started');
-}
-
-function triggerRandomEvent() {
-    const currentRoom = player.currentRoom;
-    assert(currentRoom, 'Player is not in any room');
-    if (currentRoom.events && currentRoom.events.length > 0) {
-        const randomIndex = Math.floor(Math.random() * currentRoom.events.length);
-        const randomEvent = currentRoom.events[randomIndex];
-        logToWorld(randomEvent.message);
-        console.log('Triggered random event:', randomEvent);
-    }
-}
-
 export function closeGame() {
     logToWorld("The game is closing.");
     setTimeout(() => {

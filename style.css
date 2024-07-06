@@ -9,7 +9,6 @@ body {
     display: flex;
     flex-direction: column;
     align-items: center;
-    padding: 10px;
 }
 
 #room-window {
@@ -42,11 +41,7 @@ body {
 #controls {
     display: flex;
     align-items: center;
-    flex-direction:row;
-    justify-content: center;
-    justify-content: space-between;
-    width: 80%;
-    margin-top: 10px;
+    width: 95%;
 }
 
 #command-window {
@@ -138,4 +133,50 @@ body {
 
 #se {
     background-image: url('assets/art/southeast.jpg');
+}
+
+#roundTimeElement {
+    width: 150px;
+    height: 50px;
+    background-color: #1e1e1e;
+    border: 1px solid #ccc;
+    margin-right: 5px;
+    position: relative;
+    overflow: hidden;
+}
+
+#roundTimeProgress {
+    height: 100%;
+    background-color: #870000;
+    width: 100%;
+    transition: width 140ms linear;
+    position: absolute;
+    right: 0;
+}
+
+#roundTimeText {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    color: #ffffff;
+    font-weight: bold;
+    z-index: 1;
+}
+
+#leftHand, #rightHand {
+    width: 150px;
+    height: 50px;
+    justify-content: space-between;
+    object-fit: contain;
+    position:relative;
+    background-repeat: no-repeat;
+    background-size: contain;
+    border: 3px solid #202020;
+}
+#leftHand {
+    background-image: url('assets/art/leftHand.jpg');
+}
+#rightHand {
+    background-image: url('assets/art/rightHand.jpg');
 }

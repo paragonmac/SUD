@@ -38,3 +38,17 @@ export function help() {
 export function playerDebug() {
     player.displayStatus();
 }
+
+export function jump() {
+    logToWorld('You jump!');    
+}
+
+export function roundTimeCheck(action, time) {
+    if(player.Roundtime === 0) {
+        //take the action that is being requested and see if player is in roundtime, if not, do the action else take the actions roundtime
+        player.roundtimeAdd(time);
+        action();
+    } else {
+        logToWorld('Roundtime remaining: ' + player.Roundtime);
+    }
+}
