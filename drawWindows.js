@@ -49,7 +49,6 @@ export function updateRoomWindow() {
         <br>
 
     `;
-    console.log('Updated room window:', room);
 }
 
 export function displayCurrentRoom(player) {

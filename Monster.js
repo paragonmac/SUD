@@ -1,6 +1,7 @@
 import { assert } from './utils.js';
 import { Room } from './Room.js';
 import { gameData } from './main.js';
+import { player } from './gameLogic.js';
 
 export class Monster {
     constructor(room, name) {
@@ -65,6 +66,13 @@ export class Monster {
             console.log(`${this.name} has been killed.`);
         }
     }
+
+    monsterEngage(target) {
+        if(player.isAlive()) {
+            
+        }
+    }
+
 
     monsterAdd(){
 

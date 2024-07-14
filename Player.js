@@ -18,6 +18,8 @@ export class Player {
         this.isStunned = false;
         this.isBound = false;
         this.position = 3;
+        this.engagement = 0;
+        this.isAlive = true;
     }
 
     move(direction, rooms, gameWorld) {
@@ -74,6 +76,22 @@ export class Player {
             this.leftHand = item;
         } else {
             this.rightHand = item;
+        }
+    }
+
+    increaseEngagement(amount) {
+        this.engagement = Math.min(this.engagement + amount, 1000);
+        this.checkEngagementStatus();
+    }
+
+    decreaseEngagement(amount) {
+        this.engagement = Math.max(this.engagement - amount, 0);
+        this.checkEngagementStatus();
+    }
+
+    checkEngagementStatus() {
+        if(this.engagement >= 1000) {
+            
         }
     }
 
