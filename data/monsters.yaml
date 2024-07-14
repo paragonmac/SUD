@@ -1,40 +1,48 @@
 monsters:
-  goblin:
-    name: "Goblin"
-    description: "A small, green-skinned creature with sharp teeth."
-    detailed_description: "The goblin is short and wiry, with mottled green skin and beady red eyes. It snarls and bares its sharp teeth, brandishing a crude, rusty knife."
-    health: 30
-    attack: 5
-    defense: 2
+    - id: goblin
+      name: "Goblin"
+      description: "A small, green-skinned creature with sharp teeth."
+      detailed_description: "The goblin is short and wiry, with mottled green skin and beady red eyes. It snarls and bares its sharp teeth, brandishing a crude, rusty knife."
+      health: 30
+      attack: 5
+      defense: 2
 
-  goblin_warrior:
-    name: "Goblin Warrior"
-    description: "A fierce goblin warrior clad in makeshift armor."
-    detailed_description: "This goblin is larger and more muscular than its kin. It wears pieces of scavenged armor and wields a battered sword. Its eyes burn with a fierce intensity."
-    health: 50
-    attack: 10
-    defense: 5
+    - id: goblin_warrior
+      name: "Goblin Warrior"
+      description: "A fierce goblin warrior clad in makeshift armor."
+      detailed_description: "This goblin is larger and more muscular than its kin. It wears pieces of scavenged armor and wields a battered sword. Its eyes burn with a fierce intensity."
+      health: 50
+      attack: 10
+      defense: 5
 
-  goblin_shaman:
-    name: "Goblin Shaman"
-    description: "A goblin shaman with mystical powers."
-    detailed_description: "Draped in tattered robes and adorned with bone trinkets, the goblin shaman wields mysterious magical powers. Its eyes glow with an eerie light as it chants incantations."
-    health: 40
-    attack: 8
-    defense: 3
+    - id: goblin_shaman
+      name: "Goblin Shaman"
+      description: "A goblin shaman with mystical powers."
+      detailed_description: "Draped in tattered robes and adorned with bone trinkets, the goblin shaman wields mysterious magical powers. Its eyes glow with an eerie light as it chants incantations."
+      health: 40
+      attack: 8
+      defense: 3
+   
+    - id: goblin_archer
+      name: "Goblin Archer"
+      description: "A goblin archer with a bow and arrows."
+      detailed_description: "The goblin archer is agile and quick, carrying a crude bow and a quiver of arrows. It moves stealthily and attacks from a distance, aiming for weak spots."
+      health: 35
+      attack: 7
+      defense: 2
+   
+    - id: goblin_chieftain
+      name: "Goblin Chieftain"
+      description: "The leader of the goblin tribe, commanding respect and fear."
+      detailed_description: "Towering over other goblins, the chieftain is a formidable presence. Clad in cobbled-together armor and wielding a massive club, it commands its minions with a booming voice."
+      health: 70
+      attack: 15
+      defense: 10
 
-  goblin_archer:
-    name: "Goblin Archer"
-    description: "A goblin archer with a bow and arrows."
-    detailed_description: "The goblin archer is agile and quick, carrying a crude bow and a quiver of arrows. It moves stealthily and attacks from a distance, aiming for weak spots."
-    health: 35
-    attack: 7
-    defense: 2
-
-  goblin_chieftain:
-    name: "Goblin Chieftain"
-    description: "The leader of the goblin tribe, commanding respect and fear."
-    detailed_description: "Towering over other goblins, the chieftain is a formidable presence. Clad in cobbled-together armor and wielding a massive club, it commands its minions with a booming voice."
-    health: 70
-    attack: 15
-    defense: 10
+    - id: rat
+      name: "Rat"
+      description: "A small rodent with a pointy nose."
+      detailed_description: "The rat is short and wiry, with a pointy nose and mottled fur. It snarls and bares its sharp teeth"
+      health: 20
+      attack: 3
+      defense: 1

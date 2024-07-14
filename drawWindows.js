@@ -6,6 +6,11 @@ import { rooms } from './gameLogic.js';
 let globalColor = 'white';
 let globalBackgroundColor = '#131313';
 
+export function breaker() {
+    const worldWindow = document.getElementById('world-window');
+    const messageElement = document.createElement('br');
+    worldWindow.appendChild(messageElement);
+}
 export function logToWorld(message, options={}) { // format: {backgroundColor, color, bold, italic}
     const worldWindow = document.getElementById('world-window');
     assert(worldWindow, 'World window not found');
@@ -26,23 +31,23 @@ export function logToRoom(message) {
     console.log('Logged to room window:', message);
 }
 
-export function updateRoomWindow(room) {
+export function updateRoomWindow() {
     const roomWindow = document.getElementById('room-window');
     assert(roomWindow, 'Room window not found');
+    const room = player.currentRoom;
     roomWindow.innerHTML = `
         <h3>[${room.name}]</h3>
-        <p>${room.detailed_description || ''}</p>
-        <p>
+        ${room.detailed_description || ''}
+        <br>
             <strong>You also see: </strong>
             <span style="color: yellow">${room.items.map(item => item.name).join(', ')}</span>
-        </p>
-        <p>
+        <br>
             <strong>Monsters:</strong>
-            <span style="color: red">${room.monsters.map(monster => monster.name).join(', ')}</span>
-        </p>
-        <p>
+            <span style="color: red">${room.monsters.length > 0 ? room.monsters.map(monster => monster.name).join(', '): ''}</span>
+        <br>
             <strong>Exits:</strong> ${Object.keys(room.exits).join(', ')}
-        </p>
+        <br>
+
     `;
     console.log('Updated room window:', room);
 }
@@ -50,22 +55,28 @@ export function updateRoomWindow(room) {
 export function displayCurrentRoom(player) {
     const currentRoom = player.currentRoom;
     updateRoomWindow(currentRoom);
+    breaker();
     logToWorld('[' + currentRoom.name + ']');
-    logToWorld(currentRoom.description);
-    if (currentRoom.detailed_description) {
-        logToWorld(currentRoom.detailed_description);
+ 
+ 
+ 
+    if (currentRoom.monsters.length > 0) {
+        let monsters = currentRoom.monsters.map(monster => monster.name).join(', ');
+        if (currentRoom.detailed_description) {
+            logToWorld(currentRoom.detailed_description + ' You also see a ' + monsters);
+        }
     }
     if (currentRoom.exits) {
-        logToWorld('Exits: ' + Object.keys(currentRoom.exits).join(', '));
+        logToWorld('Exits: ' + Object.keys(currentRoom.exits).join(', '), {color: '#00ff00'});
     } else {
-        logToWorld('Exits: None');
+        logToWorld('Exits: None', {color: '#ff0000'});
     }
 
+
     if (currentRoom.items || currentRoom.livingThings || currentRoom.hiddenThings) {
-        logToWorld('\nYou also see: ');
         if (currentRoom.livingThings) {
             let livingThings = currentRoom.livingThings.map(thing => thing.name).join(', ');
-            logToWorld(livingThings);
+            //logToWorld('>You also see: ' + livingThings, {color: '#00ff00'});
         }
     }
     console.log('Displayed current room:', currentRoom);

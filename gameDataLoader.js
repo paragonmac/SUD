@@ -1,4 +1,3 @@
-
 export async function loadYAML(url) {
     try {
         const response = await fetch(url);
@@ -19,6 +18,7 @@ export async function loadGameData() {
         const creatures = await loadYAML('/data/creatures.yaml');
         const monsters = await loadYAML('/data/monsters.yaml');
         const hiddenThings = await loadYAML('/data/hiddenThings.yaml');
+        const weapons = await loadYAML('/data/weapons.yaml');
 
         console.log('All YAML data loaded successfully');
 
@@ -29,6 +29,7 @@ export async function loadGameData() {
             creatures: creatures.creatures,
             monsters: monsters.monsters,
             hiddenThings: hiddenThings.hiddenThings,
+            weapons: weapons.weapons
         };
     } catch (error) {
         console.error('Error loading game data:', error);

@@ -10,7 +10,7 @@ export function move(direction) {
     const exit = currentRoom.exits[direction];
     if (exit) {
         player.move(direction, rooms, window.gameWorld);
-        logToWorld(`You move ${direction}.`);
+        logToWorld(`>: You move ${direction}.`);
         updateRoomWindow(player.currentRoom);
         displayCurrentRoom(player);
         updateCompass(player.currentRoom);
@@ -51,4 +51,8 @@ export function roundTimeCheck(action, time) {
     } else {
         logToWorld('Roundtime remaining: ' + player.Roundtime);
     }
+}
+
+export function swap() {
+    player.swap();
 }

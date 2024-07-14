@@ -1,6 +1,8 @@
 gameWorld:
   rooms:
     - id: 1
+      area_type: "forest"
+      zone_name: "town"
       name: "Forest clearing"
       description: "You are in a forest clearing. The sunlight filters through the trees."
       detailed_description: "The clearing is calm and peaceful, with birds chirping and a soft breeze rustling the leaves. The trees around you seem ancient, their bark thick and covered in moss."
@@ -12,8 +14,6 @@ gameWorld:
         - deer
       hiddenThings:
         - buried_treasure
-      monsters:
-        - goblin
       exits:
         north:
             direction: "N"
@@ -27,6 +27,8 @@ gameWorld:
         - message: "A bird sings a melancholic tune nearby."
 
     - id: 2
+      area_type: "forest"
+      zone_name: "town"
       name: "Lake"
       description: "You find yourself at the edge of a serene lake. The water is crystal clear."
       detailed_description: "The lake's surface is like glass, reflecting the sky and surrounding trees. You can see fish swimming near the shore and a few water lilies floating on the surface."
@@ -38,8 +40,6 @@ gameWorld:
         - duck
       hiddenThings:
         - sunken_chest
-      monsters:
-        - goblin_chieftain
       exits:
         south:
             direction: "S"
@@ -57,6 +57,8 @@ gameWorld:
         - message: "The sun reflects brightly off the water."
 
     - id: 3
+      area_type: "forest"
+      zone_name: "town"
       name: "Cave"
       description: "You enter a dark cave. The air is damp and the ground is uneven."
       detailed_description: "The cave walls are rough and cold to the touch, covered in patches of moss and lichen. Stalactites hang from the ceiling, and you can hear the distant dripping of water echoing through the cavern."
@@ -68,8 +70,6 @@ gameWorld:
         - bat
       hiddenThings:
         - secret_passage
-      monsters:
-        - goblin_archer
       exits:
           east:
             direction: "E"

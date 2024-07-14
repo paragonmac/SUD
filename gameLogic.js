@@ -8,14 +8,13 @@ import * as eventManager from './eventManager.js';
 
 let player;
 export { player };
-const rooms = {};
+const rooms = [];
 export { rooms };
 
 
 function spawnRoom(roomId, gameWorld) {
     if (!rooms[roomId]) {
-        rooms[roomId] = new Room(roomId);
-        rooms[roomId].initialize(gameWorld);
+        rooms[roomId] = new Room(roomId, gameWorld);
     }
     rooms[roomId].enter(gameWorld);
     player.currentRoom = rooms[roomId];
@@ -27,8 +26,8 @@ export function startGame(gameWorld) {
     const sendCommandButton = document.getElementById('send-command');
     const roundTimeBar = document.getElementById('roundTimeProgress');
     const roundTimeText = document.getElementById('roundTimeText');
-    const leftHand = document.getElementById('leftHand');
-    const rightHand = document.getElementById('rightHand');
+    const leftHandText = document.getElementById('leftHandText');
+    const rightHandText = document.getElementById('rightHandText');
 
     assert(commandInput, 'Command input element not found');
     assert(sendCommandButton, 'Send command button not found');

@@ -31,8 +31,10 @@ export const commandMap = {
     'open inventory': commands.openInventory,
     'look': commands.fetchCurrentRoom,
     'help': commands.help,
+    'get': commands.equipItem,
     'playerDebug': commands.playerDebug,
-    'jump': () => commands.roundTimeCheck(commands.jump, 5),
+    'jump': () => commands.roundTimeCheck(commands.jump, 7),
+    'swap': () => commands.swap(),
 };
 
 const keyDirectionMap = { // works with eventListener bellow
@@ -45,11 +47,16 @@ const keyDirectionMap = { // works with eventListener bellow
     'Numpad1': 'southwest',
     'Numpad7': 'northwest',
     'Numpad5': 'out',
+    'NumpadAdd': 'look',
 };
 document.addEventListener('keydown', (event) => {
     const key = event.code;
     if (key in keyDirectionMap) {
+        if(key === 'NumpadAdd'){
+            commands.fetchCurrentRoom();
+        }else{
         const direction = keyDirectionMap[key];
         commands.move(direction);
+        }
     }   
 });

@@ -1,7 +1,7 @@
 import { assert } from './utils.js';
 
-export function initializeGame(data) {
-    const { gameWorld, items, npcs, creatures, monsters, hiddenThings } = data;
+export function initializeGame(data) { //this function is taking shit from yaml and putting into the gameworld
+    const { gameWorld, items, npcs, creatures, monsters, hiddenThings, weapons} = data;
 
     assert(gameWorld, 'Game world data is missing');
     assert(items, 'Items data is missing');
@@ -9,6 +9,7 @@ export function initializeGame(data) {
     assert(creatures, 'Creatures data is missing');
     assert(monsters, 'Monsters data is missing');
     assert(hiddenThings, 'Hidden things data is missing');
+    assert(weapons, 'Weapons data is missing');
 
     gameWorld.rooms.forEach(room => {
         room.items = room.items.map(itemKey => {
@@ -22,10 +23,6 @@ export function initializeGame(data) {
         room.hiddenThings = room.hiddenThings.map(hiddenThingKey => {
             assert(hiddenThings[hiddenThingKey], `Hidden thing key not found: ${hiddenThingKey}`);
             return hiddenThings[hiddenThingKey];
-        });
-        room.monsters = room.monsters.map(monsterKey => {
-            assert(monsters[monsterKey], `Monster key not found: ${monsterKey}`);
-            return monsters[monsterKey];
         });
     });
 

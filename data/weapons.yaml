@@ -1,0 +1,33 @@
+weapons:
+  small_weapons:
+    swords:
+      - id: short_sword
+        name: "Short Sword"
+        description: "A versatile short sword with a balanced blade."
+        detailed_description: "This short sword features a straight, double-edged blade crafted from high-quality steel. Its compact size makes it ideal for quick strikes and close-quarters combat."
+        balance: 5  
+        suited: 3   
+        weight: 10  
+        durability: 80
+        impact: 10  
+        slice: 10   
+        puncture: 5 
+        edgeType: "small"    
+        material: "steel"
+        value: 150 
+
+    daggers:
+      - id: stiletto
+        name: "Stiletto"
+        description: "A slender, sharp dagger designed for swift and precise strikes."
+        detailed_description: "This stiletto features a narrow, triangular blade with a needle-like point. Its slim profile and lightweight design make it perfect for quick, stealthy attacks and finding gaps in armor."
+        balance: 8 
+        suited: 4   
+        weight: 3   
+        durability: 70
+        impact: 5  
+        slice: 3      
+        puncture: 8   
+        edgeType: "small"
+        material: "high-carbon steel"
+        value: 75

@@ -4,18 +4,20 @@ import { updateCompass } from './imageHandler.js';
 import { logToWorld } from './drawWindows.js';
 export class Player {
     constructor(name, startingRoom) {
+        this.class = '';
         this.name = name;
         this.currentRoom = startingRoom;
         this.Roundtime = 0;
-        this.leftHand = null;
-        this.rightHand = null;
-        this.backContainer = null;
-        this.inventory = [];
+        this.leftHand = 'short_sword';
+        this.rightHand = '';
+        this.Container = {};
         this.health = 100;
         this.level = 1;
-        this.handr = null;
-        this.handl = null;
-        this.backContainer = null;
+        this.spells = {};
+        this.skills = {};
+        this.isStunned = false;
+        this.isBound = false;
+        this.position = 3;
     }
 
     move(direction, rooms, gameWorld) {
@@ -25,8 +27,7 @@ export class Player {
         assert(typeof nextRoomId === 'number', `Invalid roomID ${nextRoomId}`);
         if (nextRoomId) {
             if (!rooms[nextRoomId]) {
-                rooms[nextRoomId] = new Room(nextRoomId);
-                rooms[nextRoomId].initialize(gameWorld);
+                rooms[nextRoomId] = new Room(nextRoomId, gameWorld);
             }
             this.currentRoom = rooms[nextRoomId];
             this.currentRoom.enter(gameWorld);
@@ -66,5 +67,22 @@ export class Player {
     roundtimeAdd(adjust) {
         this.Roundtime += adjust;
         logToWorld(`Roundtime: ${this.Roundtime}`);
+    }
+
+    equipItem(item) {
+        if (this.rightHand) {
+            this.leftHand = item;
+        } else {
+            this.rightHand = item;
+        }
+    }
+
+    swap() {
+        if (this.leftHand || this.rightHand) {
+            const temp = this.rightHand;
+            this.rightHand = this.leftHand;
+            this.leftHand = temp;
+            logToWorld(`Swapped items: ${this.leftHand} and ${this.rightHand}`);
+        }
     }
 }
