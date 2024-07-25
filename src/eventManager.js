@@ -7,12 +7,14 @@ import { Monster } from './Monster.js';
 export function eventLoop() {
     setInterval(() => {
         ambientEventLoop();
-        player.roundtimeSub();
+        player.playerRoundtimeSub();
         roundTimeBarUpdate();
         monsterSpawn();
         updateRoomWindow();
+        ambientMonsterLoop();
+        playerEngagementBar();
     }, 1000);
-    console.log('Event loop started');
+    console.log('Event loop started')
 }
 
 export function ambientEventLoop() {
@@ -28,6 +30,20 @@ export function ambientEventLoop() {
         }
 };
 
+export function ambientMonsterLoop() {
+    if (Math.random() < 0.003) {
+        const currentRoom = player.currentRoom
+        assert(currentRoom, 'Player is not in any room')
+        if (currentRoom.monsters && currentRoom.monsters.length > 0){
+            const randomMonster = currentRoom.monsters[Math.floor(Math.random() * currentRoom.monsters.length)];
+            if(randomMonster.randomMessages && randomMonster.randomMessages.length > 0){
+                const randomMessage = randomMonster.randomMessages[Math.floor(Math.random() * randomMonster.randomMessages.length)];
+                logToWorld(randomMessage);
+            }
+        }
+    }
+}
+
 export function roundTimeBarUpdate(){
     if(roundTimeProgress && roundTimeText){
         const widthPercentage = Math.max(player.Roundtime / 10) * 100;
@@ -35,9 +51,22 @@ export function roundTimeBarUpdate(){
 
         roundTimeText.textContent = player.Roundtime > 0 ? player.Roundtime : '';
 
-        leftHandText.textContent = player.leftHand;
-        rightHandText.textContent = player.rightHand;
+        leftHandText.textContent = player.leftHand; //fix this
+        rightHandText.textContent = player.rightHand; //fix this
     }
+}
+export function playerEngagementBar() {
+    player.engagement = Math.floor(Math.random() * 1000, 0);
+    const widthEngPercent = player.engagement / 1000;
+    const color = getColor(widthEngPercent);
+    engagementProgress.style.width = `${Math.min(widthEngPercent * 100, 100)}%`;
+    engagementProgress.style.backgroundColor = color;
+    engagementText.textContent = player.engagement;
+}
+
+function getColor(value) {
+    const hue = ((1 - value) * 120).toString(10);
+    return ["hsla(", hue, ",100%,40%,1)"].join("");
 }
 
 export function monsterSpawn() {

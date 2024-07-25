@@ -28,6 +28,8 @@ export function startGame(gameWorld) {
     const roundTimeText = document.getElementById('roundTimeText');
     const leftHandText = document.getElementById('leftHandText');
     const rightHandText = document.getElementById('rightHandText');
+    const engagementBar = document.getElementById('engagementProgress');
+    const engagementText = document.getElementById('engagementText');
 
     assert(commandInput, 'Command input element not found');
     assert(sendCommandButton, 'Send command button not found');

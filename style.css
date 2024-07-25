@@ -135,7 +135,7 @@ body {
     background-image: url('assets/art/southeast.jpg');
 }
 
-#roundTimeElement {
+#roundTimeElement, #engagementElement {
     width: 150px;
     height: 50px;
     background-color: #1e1e1e;
@@ -145,7 +145,7 @@ body {
     overflow: hidden;
 }
 
-#roundTimeProgress {
+#roundTimeProgress, #engagementProgress {
     height: 100%;
     background-color: #870000;
     width: 100%;
@@ -154,7 +154,7 @@ body {
     right: 0;
 }
 
-#roundTimeText, #leftHandText, #rightHandText {
+#roundTimeText, #engagementText, #leftHandText, #rightHandText {
     position: absolute;
     top: 50%;
     left: 50%;

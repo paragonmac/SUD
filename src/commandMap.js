@@ -1,11 +1,28 @@
 import { logToWorld } from './drawWindows.js';
 import * as commands from './commands.js';
 import { player } from './gameLogic.js';
+import { Player } from './Player.js';
+
+
+let firstWord;
+let secondWord;
+let thirdWord;
+let fourthWord;
+
 
 export function handleCommand(input) {
     const trimInput = input.trim();
+    const lnputWords = trimInput.split(/\s+/);
+
+    firstWord = lnputWords[0] || null;
+    secondWord = lnputWords[1] || null;
+    thirdWord = lnputWords[2] || null;
+    fourthWord = lnputWords[3] || null;
+
+    console.log('Player command:', firstWord, secondWord, thirdWord, fourthWord);
+
     const matchedCommands = Object.keys(commandMap).filter(command =>
-        command.startsWith(trimInput.toLowerCase())
+        command.startsWith(firstWord.toLowerCase())
     );
 
     if (matchedCommands.length === 1) {
@@ -31,10 +48,15 @@ export const commandMap = {
     'open inventory': commands.openInventory,
     'look': commands.fetchCurrentRoom,
     'help': commands.help,
-    'get': commands.equipItem,
-    'playerDebug': commands.playerDebug,
+    //'get': commands.equipItem(),
+    'status': commands.playerDisplayStatus,
     'jump': () => commands.roundTimeCheck(commands.jump, 7),
     'swap': () => commands.swap(),
+    'target': () => commands.targetMonster(secondWord || null),
+    'monsterlist': () => commands.listMonsters(),
+    'advance': () => player.playerEngage(secondWord, thirdWord || null),
+    'engage': () => player.playerEngage(secondWord, thirdWord || null),
+    'find': () => commands.findMonster(secondWord, thirdWord || null),
 };
 
 const keyDirectionMap = { // works with eventListener bellow

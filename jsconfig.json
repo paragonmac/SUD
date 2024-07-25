@@ -1,0 +1,12 @@
+{
+  "compilerOptions": {
+    "target": "ES6",
+    "allowSyntheticDefaultImports": true,
+    "module": "commonjs",
+    "checkJs": true,
+    "baseUrl": ".",
+  },
+  "include": [
+    "./**/*.js"
+  ]
+}

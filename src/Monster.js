@@ -1,12 +1,16 @@
 import { assert } from './utils.js';
 import { Room } from './Room.js';
 import { gameData } from './main.js';
+import { CombatPosition} from './CombatPosition.js';
 import { player } from './gameLogic.js';
-
+ 
+//build a monster contstructor where the monster is labelled with a physical appearance that will be the new label instead of first monster it 
+//will be yellow goblin, big goblin, dark green goblin
 export class Monster {
     constructor(room, name) {
         const monsterData = gameData.monsters.find(monster => monster.id === name);
-        assert(monsterData, `Monster data for monster with id ${this.id} not found monsterData: ${monsterData}`);
+        assert(monsterData, `Monster data for monster with id ${name} not found monsterData: ${monsterData}`);
+        this.physicalDescription = this.monsterPhysicalAppearance();
         this.name = monsterData.name;
         this.description = monsterData.description;
         this.health = monsterData.health || 100;
@@ -21,9 +25,26 @@ export class Monster {
         this.isStunned = monsterData.isStunned || false;
         this.isBound = monsterData.isBound || false;
         this.position = monsterData.position || 'standing';
-
+        this.randomMessages = monsterData.randomMessages || [];
+        this.combatPosition = new CombatPosition();
     }
 
+    monsterPhysicalAppearance() {//TODO: implement monster physical appearance
+        while (true) {
+        const physDescriptions = ['big', 'small', 'yellow', 'green', 'blue', 'red', 'black', 'tall', 'short', 'weak', 'strong'];
+        const rand = Math.floor(Math.random() * physDescriptions.length);
+        let isDuplicate = false;
+        for(let i in player.currentRoom.monsters) {
+            if(physDescriptions[rand] === player.currentRoom.monsters[i].physicalDescription) {
+                isDuplicate = true;
+                break
+            }
+        }
+            if(!isDuplicate){
+            return physDescriptions[rand];
+            }
+        }
+    }
     //TODO: implement monster move
     monsterMove(direction, rooms, gameWorld) {
         const currentRoom = rooms[this.currentRoom.id];
@@ -37,13 +58,11 @@ export class Monster {
             }
             this.currentRoom = rooms[nextRoomId];
             this.currentRoom.enter(gameWorld);
-            updateCompass(this.currentRoom);
             console.log(`${this.name} moves ${direction} to ${nextRoomId}`);
         } else {
             console.log(`You can't move ${direction} from here.`);
         }
     }
-
 
     monsterAttack(target) {
         assert(target, 'Target is not defined');
@@ -67,15 +86,13 @@ export class Monster {
         }
     }
 
-    monsterEngage(target) {
-        if(player.isAlive()) {
-            
-        }
+    monsterEngagePlayer() {
+        addCombatant(this);
     }
 
-
-    monsterAdd(){
-
+    monsterDeath() {
+        //TODO: implement monster death cleanup, bunch of clean ups and adding loot drops.
+        console.log(`${this.name} has died.`);
     }
 
     monsterBrain() {
@@ -84,5 +101,4 @@ export class Monster {
     isAlive() {
         return this.health > 0;
     }
-
 }

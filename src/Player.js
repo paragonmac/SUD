@@ -1,7 +1,9 @@
 import { assert } from './utils.js';
 import { Room } from './Room.js';
+import  * as commands from './commands.js';
 import { updateCompass } from './imageHandler.js';
 import { logToWorld } from './drawWindows.js';
+import { CombatPosition} from './CombatPosition.js';
 export class Player {
     constructor(name, startingRoom) {
         this.class = '';
@@ -17,12 +19,14 @@ export class Player {
         this.skills = {};
         this.isStunned = false;
         this.isBound = false;
-        this.position = 3;
+        this.position = ['standing', 'kneeling', 'sitting', 'lying'];
         this.engagement = 0;
         this.isAlive = true;
+        this.target = null;
+        this.combatPosition = new CombatPosition();
     }
 
-    move(direction, rooms, gameWorld) {
+    playerMove(direction, rooms, gameWorld) {
         const currentRoom = rooms[this.currentRoom.id];
         assert(currentRoom, `Current room: ${this.currentRoom} not found ${rooms}`);
         const nextRoomId = currentRoom.getExit(direction);
@@ -40,38 +44,40 @@ export class Player {
         }
     }
 
-    addItem(item) {
+    playerAddItem(item) {
         this.inventory.push(item);
         console.log(`${item.name} has been added to your inventory.`);
     }
 
-    removeItem(itemName) {
+    playerRemoveItem(itemName) {
         this.inventory = this.inventory.filter(item => item.name !== itemName);
         console.log(`${itemName} has been removed from your inventory.`);
     }
 
-    displayStatus() {
+    playerDisplayStatus() {
         console.log(`Player: ${this.name}`);
         console.log(`Roundtime: ${this.Roundtime}`);
         console.log(`Health: ${this.health}`);
         console.log(`Level: ${this.level}`);
         console.log(`Current Room: ${this.currentRoom.id}`);
-        console.log(`Inventory: ${this.inventory.map(item => item.name).join(', ')}`);
+        //console.log(`Inventory: ${this.inventory.map(item => item.name).join(', ')}`);
+        console.log(`Monster target: ${this.target ? this.target.name : 'None'}`)
+        
     }
 
-    roundtimeSub(){
+    playerRoundtimeSub(){
         if(this.Roundtime > 0) {
             assert(this.Roundtime > 0, 'Roundtime cannot be negative');
             this.Roundtime = Math.max(this.Roundtime - 1, 0);
         }
     }
 
-    roundtimeAdd(adjust) {
+    playerRoundtimeAdd(adjust) {
         this.Roundtime += adjust;
         logToWorld(`Roundtime: ${this.Roundtime}`);
     }
 
-    equipItem(item) {
+    playerEquipItem(item) {
         if (this.rightHand) {
             this.leftHand = item;
         } else {
@@ -79,23 +85,42 @@ export class Player {
         }
     }
 
-    increaseEngagement(amount) {
+    playerIncreaseEngagement(amount) {
         this.engagement = Math.min(this.engagement + amount, 1000);
-        this.checkEngagementStatus();
+        //this.playerCheckEngagementStatus();
     }
 
-    decreaseEngagement(amount) {
+    playerDecreaseEngagement(amount) {
         this.engagement = Math.max(this.engagement - amount, 0);
-        this.checkEngagementStatus();
+       //this.playerCheckEngagementStatus();
     }
 
-    checkEngagementStatus() {
-        if(this.engagement >= 1000) {
-            
+    playerTargetMonster(monsterName) {
+        const targetMonster = this.currentRoom.monsters.find(monster => monster.name.toLowerCase() === monsterName.toLowerCase());
+        if (!targetMonster) {
+            logToWorld(`No monster named ${monsterName}`);
+            return;
+        }
+        this.target = targetMonster;
+        logToWorld(`Engaging ${this.target.name}`);
+    }
+
+    playerEngage(arg1, arg2) {// aka advance
+        const targetMonster = commands.findMonster(arg1, arg2);
+        if (!targetMonster || !targetMonster.isAlive) {
+            logToWorld(targetMonster ? 'Monster is already dead' : 'Please select a target');
+            return;
+        }
+
+        for (let position in this.combatPosition) {
+            if (this.combatPosition[position] === null) {
+                this.combatPosition[position] = targetMonster;
+                logToWorld(`You engage ${targetMonster.name} in ${position}`);
+            }
         }
     }
 
-    swap() {
+    playerSwap() {
         if (this.leftHand || this.rightHand) {
             const temp = this.rightHand;
             this.rightHand = this.leftHand;
@@ -104,3 +129,4 @@ export class Player {
         }
     }
 }
+
